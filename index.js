@@ -21,18 +21,21 @@ const quotes = [
     "The only limit to our realization of tomorrow is our doubts of today. - Franklin D. Roosevelt"
 ]
 
-const usedIndex = new Set()
+const usedIndexes = new Set()
 const quoteElement = document.getElementById("quote")
 
 function generateQuote() {
+    if (usedIndexes.size >= quotes.length) {
+        usedIndexes.clear()
+    }
     while (true) {
         const randomIndex = Math.floor(Math.random() * quotes.length)
 
-        if (usedIndex.has(randomIndex)) continue
+        if (usedIndexes.has(randomIndex)) continue
 
         const quote = quotes[randomIndex]
         quoteElement.innerHTML = quote
-        usedIndex.add(randomIndex)
+        usedIndexes.add(randomIndex)
         break
     }
 }
